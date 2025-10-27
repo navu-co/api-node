@@ -1,35 +1,4 @@
-import { GeoLocationDescriptor } from "./common.js";
-
-export type VisitorFlag =
-  | 'ad-click'
-  | 'affiliate'
-  | 'bot'
-  | 'contact-extra-click'
-  | 'contact-message'
-  | 'crm-account'
-  | 'crm-identity'
-  | 'domain'
-  | 'email-click'
-  | 'follower'
-  | 'form-submit'
-  | 'guide-entry'
-  | 'guide-question'
-  | 'high-value'
-  | 'identity'
-  | 'link-click'
-  | 'live-chat-requested'
-  | 'mql'
-  | 'multi-day'
-  | 'navu-click'
-  | 'navu-close'
-  | 'navu-open'
-  | 'navu-preview'
-  | 'navu-user'
-  | 'navu-viewer'
-  | 'qualified'
-  | 'site-search'
-  | 'sql';
-
+import { GeoLocationDescriptor, VisitorFlag } from "./common.js";
 
 export interface FetchVisitorFilter {
   after?: number;

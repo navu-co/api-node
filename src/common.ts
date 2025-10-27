@@ -26,3 +26,68 @@ export interface DurationDescriptor {
   timeToStart: number;
   totalTimeToComplete: number;
 }
+
+export type VisitorFlag =
+  | 'ad-click'
+  | 'affiliate'
+  | 'bot'
+  | 'contact-extra-click'
+  | 'contact-message'
+  | 'crm-account'
+  | 'crm-identity'
+  | 'domain'
+  | 'email-click'
+  | 'follower'
+  | 'form-submit'
+  | 'guide-entry'
+  | 'guide-question'
+  | 'high-value'
+  | 'identity'
+  | 'link-click'
+  | 'live-chat-requested'
+  | 'mql'
+  | 'multi-day'
+  | 'navu-click'
+  | 'navu-close'
+  | 'navu-open'
+  | 'navu-preview'
+  | 'navu-user'
+  | 'navu-viewer'
+  | 'qualified'
+  | 'site-search'
+  | PageviewFlag;
+
+export type PageviewFlag =
+  | 'ad-click'
+  | 'client-side-navigation'
+  | 'contact-extra-click'
+  | 'contact-message'
+  | 'crm-account'
+  | 'crm-identity'
+  | 'domain'
+  | 'email-click'
+  | 'form-submit'
+  | 'guide-entry'
+  | 'guide-question'
+  | 'identity'
+  | 'link-click'
+  | 'live-chat-requested'
+  | 'mql'
+  | 'navu-click'
+  | 'navu-close'
+  | 'navu-open'
+  | 'navu-preview'
+  | 'navu-user'
+  | 'navu-viewer'
+  | 'qualified'
+  | 'site-search';
+
+export type QuestionFlag =
+  | 'bot'
+  | 'custom-skill'
+  | 'note'
+  | 'out-of-scope'
+  | 'thumbs-up'
+  | 'thumbs-down'
+  | 'unanswered'
+  | 'preview';

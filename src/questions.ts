@@ -1,14 +1,4 @@
-import { DurationDescriptor, GeoLocationDescriptor, ResourceDescriptor } from "./common.js";
-
-export type QuestionFlag =
-  | 'bot'
-  | 'custom-skill'
-  | 'note'
-  | 'out-of-scope'
-  | 'thumbs-up'
-  | 'thumbs-down'
-  | 'unanswered'
-  | 'preview';
+import { DurationDescriptor, GeoLocationDescriptor, QuestionFlag, ResourceDescriptor } from "./common.js";
 
 export interface FetchQuestionFilter {
   after?: number;
