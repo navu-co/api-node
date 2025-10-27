@@ -3,6 +3,8 @@
  *
  * Node.js library for accessing the Navu API.
  * Provides programmatic access to data about your Navu website.
+ * 
+ * Create a NavuApi instance and then invoke methods to fetch questions, visitors, messages, and/or pageviews.
  */
 
 export { NavuApi } from './navu-api';
