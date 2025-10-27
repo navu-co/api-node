@@ -6,6 +6,7 @@
  */
 
 export { NavuApi } from './navu-api';
+export { Cursor } from './cursor';
 export * from './common.js';
 export * from './questions.js';
 export * from './visitors.js';
