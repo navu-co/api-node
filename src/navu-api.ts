@@ -1,7 +1,8 @@
-import { FetchMessageDetails, FetchMessageResponse } from "./messages.js";
-import { FetchPageviewDetails, FetchPageviewResponse } from "./pageviews.js";
-import { FetchQuestionDetails, FetchQuestionResponse } from "./questions.js";
-import { FetchVisitorDetails, FetchVisitorResponse } from "./visitors.js";
+import { FetchMessageDetails, FetchMessageResponse, Message } from "./messages.js";
+import { FetchPageviewDetails, FetchPageviewResponse, Pageview } from "./pageviews.js";
+import { FetchQuestionDetails, FetchQuestionResponse, Question } from "./questions.js";
+import { FetchVisitorDetails, FetchVisitorResponse, Visitor } from "./visitors.js";
+import { Cursor } from "./cursor.js";
 
 /**
  * NavuApi is the main entry point for interacting with the Navu API.
@@ -23,12 +24,38 @@ export class NavuApi {
   }
 
   /**
+   * Fetches questions using a cursor for iteration.
+   * @param details - The details for fetching questions
+   * @returns A cursor for iterating through questions
+   */
+  public async fetchQuestions(details: FetchQuestionDetails): Promise<Cursor<Question, FetchQuestionDetails, FetchQuestionResponse>> {
+    return new Cursor(
+      details,
+      (d) => this.postFetchQuestions(d),
+      (response) => response.questions
+    );
+  }
+
+  /**
  * Fetches questions from the Navu API.
  * @param details - The details for fetching questions
  * @returns The response containing questions data
  */
   public async postFetchQuestions(details: FetchQuestionDetails): Promise<FetchQuestionResponse> {
     return this.makeRequest('fetch-questions', details);
+  }
+
+  /**
+   * Fetches visitors using a cursor for iteration.
+   * @param details - The details for fetching visitors
+   * @returns A cursor for iterating through visitors
+   */
+  public async fetchVisitors(details: FetchVisitorDetails): Promise<Cursor<Visitor, FetchVisitorDetails, FetchVisitorResponse>> {
+    return new Cursor(
+      details,
+      (d) => this.postFetchVisitors(d),
+      (response) => response.visitors
+    );
   }
 
   /**
@@ -41,12 +68,38 @@ export class NavuApi {
   }
 
   /**
+   * Fetches messages using a cursor for iteration.
+   * @param details - The details for fetching messages
+   * @returns A cursor for iterating through messages
+   */
+  public async fetchMessages(details: FetchMessageDetails): Promise<Cursor<Message, FetchMessageDetails, FetchMessageResponse>> {
+    return new Cursor(
+      details,
+      (d) => this.postFetchMessages(d),
+      (response) => response.messages
+    );
+  }
+
+  /**
    * Fetches messages from the Navu API.
    * @param details - The details for fetching messages
    * @returns The response containing messages data
    */
   public async postFetchMessages(details: FetchMessageDetails): Promise<FetchMessageResponse> {
     return this.makeRequest('fetch-messages', details);
+  }
+
+  /**
+   * Fetches pageviews using a cursor for iteration.
+   * @param details - The details for fetching pageviews
+   * @returns A cursor for iterating through pageviews
+   */
+  public async fetchPageviews(details: FetchPageviewDetails): Promise<Cursor<Pageview, FetchPageviewDetails, FetchPageviewResponse>> {
+    return new Cursor(
+      details,
+      (d) => this.postFetchPageviews(d),
+      (response) => response.pageviews
+    );
   }
 
   /**
