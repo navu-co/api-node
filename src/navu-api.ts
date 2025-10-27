@@ -45,4 +45,86 @@ export class NavuApi {
   protected getAuthHeader(): string {
     return `Bearer ${this.apiKey}`;
   }
+
+  /**
+   * Makes a POST request to the Navu API with retry logic for rate limiting.
+   * @param endpoint - The API endpoint to call
+   * @param body - The request body to send
+   * @returns The response data
+   */
+  private async makeRequest<T>(endpoint: string, body: unknown): Promise<T> {
+    const url = this.buildUrl(endpoint);
+    let delay = 1000; // Start with 1 second delay
+    const maxRetries = 10;
+    let attempt = 0;
+
+    while (attempt < maxRetries) {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.getAuthHeader(),
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (response.status === 429) {
+        // Rate limited - wait and retry with exponential backoff
+        attempt++;
+        if (attempt >= maxRetries) {
+          throw new Error(`Rate limit exceeded after ${maxRetries} retries`);
+        }
+        await new Promise((resolve) => setTimeout(resolve, delay));
+        delay *= 2; // Double the delay for exponential backoff
+        continue;
+      }
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(
+          `API request failed with status ${response.status}: ${errorText}`,
+        );
+      }
+
+      return (await response.json()) as T;
+    }
+
+    throw new Error('Maximum retry attempts exceeded');
+  }
+
+  /**
+   * Fetches questions from the Navu API.
+   * @param details - The details for fetching questions
+   * @returns The response containing questions data
+   */
+  public async postFetchQuestions(details: unknown): Promise<unknown> {
+    return this.makeRequest('fetch-questions', details);
+  }
+
+  /**
+   * Fetches visitors from the Navu API.
+   * @param details - The details for fetching visitors
+   * @returns The response containing visitors data
+   */
+  public async postFetchVisitors(details: unknown): Promise<unknown> {
+    return this.makeRequest('fetch-visitors', details);
+  }
+
+  /**
+   * Fetches messages from the Navu API.
+   * @param details - The details for fetching messages
+   * @returns The response containing messages data
+   */
+  public async postFetchMessages(details: unknown): Promise<unknown> {
+    return this.makeRequest('fetch-messages', details);
+  }
+
+  /**
+   * Fetches pageviews from the Navu API.
+   * @param details - The details for fetching pageviews
+   * @returns The response containing pageviews data
+   */
+  public async postFetchPageviews(details: unknown): Promise<unknown> {
+    return this.makeRequest('fetch-pageviews', details);
+  }
 }
