@@ -6,3 +6,4 @@
  */
 
 export { NavuApi } from './navu-api';
+export * from './types';
