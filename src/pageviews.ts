@@ -4,7 +4,7 @@ export interface FetchPageviewFilter {
 }
 
 export interface FetchPageviewDetails {
-  visitor: string;
+  visitorId: string;
   filter?: FetchPageviewFilter;
   limit?: number;
   nextPage?: string;

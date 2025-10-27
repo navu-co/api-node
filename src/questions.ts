@@ -1,4 +1,4 @@
-import { GeoLocationDescriptor, ResourceDescriptor } from "./common.js";
+import { DurationDescriptor, GeoLocationDescriptor, ResourceDescriptor } from "./common.js";
 
 export type QuestionFlag =
   | 'bot'
@@ -61,11 +61,6 @@ export interface QuestionSearchResponseDescriptor extends QuestionResponseDescri
 export type QuestionSource = 'suggested' | 'linked' | 'text-entry' | 'introduction' | 'bubble-suggestion' | 'bubble-prompt';
 export type QuestionReaction = 'thumbs-up' | 'thumbs-down';
 
-export interface QuestionDurationDescriptor {
-  timeToStart: number;
-  totalTimeToComplete: number;
-}
-
 export interface Question {
   id: string;
   at: number;
@@ -78,7 +73,7 @@ export interface Question {
   source: QuestionSource;
   reaction?: QuestionReaction;
   note?: string;
-  duration: QuestionDurationDescriptor;
+  duration: DurationDescriptor;
 }
 
 export interface FetchQuestionResponse {

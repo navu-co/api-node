@@ -21,3 +21,8 @@ export interface ResourceDescriptor {
   lastModified?: number;
   language?: string;
 }
+
+export interface DurationDescriptor {
+  timeToStart: number;
+  totalTimeToComplete: number;
+}
