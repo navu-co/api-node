@@ -2,7 +2,7 @@
  * Generic cursor for iterating through paginated API results.
  * Handles automatic paging and provides convenient iteration methods.
  */
-export class Cursor<T, D, R extends { nextPage?: string }> {
+export class Cursor<T, D extends { nextPage?: string }, R extends { nextPage?: string }> {
   private items: T[] = [];
   private currentIndex = 0;
   private nextPageToken?: string;
@@ -86,12 +86,12 @@ export class Cursor<T, D, R extends { nextPage?: string }> {
     }
 
     // Prepare the details for the next page
-    const requestDetails = this.nextPageToken
+    const requestDetails: D = this.nextPageToken
       ? { ...this.details, nextPage: this.nextPageToken }
       : this.details;
 
     // Fetch the next page
-    const response = await this.fetchFunction(requestDetails as D);
+    const response = await this.fetchFunction(requestDetails);
 
     // Extract items from the response
     const newItems = this.extractItems(response);
