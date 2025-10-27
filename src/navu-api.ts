@@ -13,16 +13,6 @@ export class NavuApi {
    * @param apiKey - Your Navu API key (starts with 'ak_')
    */
   constructor(siteCode: string, apiKey: string) {
-    if (!siteCode || siteCode.trim() === '') {
-      throw new Error('siteCode is required');
-    }
-    if (!apiKey || apiKey.trim() === '') {
-      throw new Error('apiKey is required');
-    }
-    if (!apiKey.startsWith('ak_')) {
-      throw new Error('apiKey must start with "ak_"');
-    }
-
     this.siteCode = siteCode;
     this.apiKey = apiKey;
   }

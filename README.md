@@ -214,10 +214,10 @@ Authorization: Bearer ak_00A000000000000000000000000000000A00
 ```
 
 There is a separate URL for each method:
-- **fetchQuestions**: https://api.navu.co/SITECODE/v1/fetch-questions
-- **fetchVisitors**: https://api.navu.co/SITECODE/v1/fetch-visitors
-- **fetchMessages**: https://api.navu.co/SITECODE/v1/fetch-messages
-- **fetchPageviews**: https://api.navu.co/SITECODE/v1/fetch-pageviews
+- **postFetchQuestions**: https://api.navu.co/SITECODE/v1/fetch-questions
+- **postFetchVisitors**: https://api.navu.co/SITECODE/v1/fetch-visitors
+- **postFetchMessages**: https://api.navu.co/SITECODE/v1/fetch-messages
+- **postFetchPageviews**: https://api.navu.co/SITECODE/v1/fetch-pageviews
 
 If you choose to use the REST APIs directly, you must handle paging and throttling.  If a response contains a **nextPage**
 field, to get the next page, include that value in a **nextPage** field along with otherwise identical details.

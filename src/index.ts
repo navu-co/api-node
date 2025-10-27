@@ -5,4 +5,4 @@
  * Provides programmatic access to data about your Navu website.
  */
 
-export { NavuApi } from './NavuApi';
+export { NavuApi } from './navu-api';
