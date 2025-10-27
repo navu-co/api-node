@@ -1,0 +1,129 @@
+import { GeoLocationDescriptor } from "./common.js";
+
+export type VisitorFlag =
+  | 'ad-click'
+  | 'affiliate'
+  | 'bot'
+  | 'contact-extra-click'
+  | 'contact-message'
+  | 'crm-account'
+  | 'crm-identity'
+  | 'domain'
+  | 'email-click'
+  | 'follower'
+  | 'form-submit'
+  | 'guide-entry'
+  | 'guide-question'
+  | 'high-value'
+  | 'identity'
+  | 'link-click'
+  | 'live-chat-requested'
+  | 'mql'
+  | 'multi-day'
+  | 'navu-click'
+  | 'navu-close'
+  | 'navu-open'
+  | 'navu-preview'
+  | 'navu-user'
+  | 'navu-viewer'
+  | 'qualified'
+  | 'site-search'
+  | 'sql';
+
+
+export interface FetchVisitorFilter {
+  after?: number;
+  withFlags?: VisitorFlag[];
+  withoutFlags?: VisitorFlag[];
+}
+
+export interface FetchVisitorDetails {
+  filter?: FetchVisitorFilter;
+  limit?: number;
+  nextPage?: string;
+}
+
+export interface VisitorTimestamps {
+  firstSeen: number;
+  lastContact: number;
+}
+
+export interface VisitorEngagement {
+  pageviews: number;
+  uniquePageCount: number;
+  activity: number;
+  visitDays: number;
+  guideQuestions: number;
+}
+
+export type DeviceType = 'desktop' | 'phone' | 'tablet' | 'other';
+
+export interface Dimensions {
+  width: number;
+  height: number;
+}
+
+export type PrivacyConsentState = 'granted-implicit' | 'granted-explicit' | 'disallowed-implicit' | 'disallowed-explicit';
+
+export type BotDetectionType = 'normal' | 'bot' | 'data-center' | 'user-agent';
+
+export type AcquisitionCampaignType = 'advertising' | 'home-direct' | 'direct' | 'referral' | 'organic-search' | 'organic-social' | 'email' | 'home-search' | 'home-social' | 'other' | 'navu-preview' | 'none';
+
+export type VisitorIdentityType = 'form-submission' | 'google-analytics' | 'hubspot' | 'hubspot-domain' | 'marketo' | 'marketo-domain' | 'navu-panel' | 'salesforce' | 'salesforce-domain' | 'ip-address' | 'chatbot' | 'navu-contact-form' | 'navu-assistant';
+
+
+export interface VisitorIdentityDescriptor {
+  type: VisitorIdentityType;
+  masked?: boolean;
+  email?: string;
+  name?: string;
+  domain?: string;
+  companyName?: string;
+  hubspotVid?: number;
+  hubspotCompanyId?: string;
+  salesforceContactId?: string;
+  salesforceLeadId?: string;
+  salesforceAccountId?: string;
+}
+
+export interface VisitorMetadata {
+  deviceType: DeviceType;
+  timezoneOffsetMinutes: number;
+  display: Dimensions;
+  browserLanguage?: string; // as reported by navigator.language
+  contentLanguage?: string; // from lang attribute in html tag
+  doNotTrack?: string; // as reported by navigator.doNotTrack
+  globalPrivacyControl?: boolean; // as reported by navigator.globalPrivacyControl
+  userAgent?: string;
+  adBlockerDetected?: boolean;
+  usPrivacyString?: string;
+  consent?: PrivacyConsentState;
+  isGdpr?: boolean;
+  botDetection?: BotDetectionType;
+}
+
+export interface VisitorCrmInfo {
+  hubspotUtk?: string;
+  marketoTrk?: string;
+  salesforceVisitorIdSuffix?: string;
+  salesforceVisitorIdValue?: string;
+}
+
+export interface Visitor {
+  id: string;
+  geolocation?: GeoLocationDescriptor;
+  timestamps: VisitorTimestamps;
+  engagement: VisitorEngagement;
+  flags: VisitorFlag[];
+  metadata: VisitorMetadata;
+  crm?: VisitorCrmInfo;
+  channels: AcquisitionCampaignType[];
+  identities: VisitorIdentityDescriptor[];
+  convertedAt?: number;
+  profile?: string;
+}
+
+export interface FetchVisitorResponse {
+  visitors: Visitor[];
+  nextPage?: string;
+}

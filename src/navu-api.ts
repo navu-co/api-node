@@ -1,3 +1,8 @@
+import { FetchMessageDetails, FetchMessageResponse } from "./messages.js";
+import { FetchPageviewDetails, FetchPageviewResponse } from "./pageviews.js";
+import { FetchQuestionDetails, FetchQuestionResponse } from "./questions.js";
+import { FetchVisitorDetails, FetchVisitorResponse } from "./visitors.js";
+
 /**
  * NavuApi is the main entry point for interacting with the Navu API.
  * It provides methods to fetch questions, visitors, messages, and pageviews.
@@ -18,17 +23,39 @@ export class NavuApi {
   }
 
   /**
-   * Gets the site code for this API instance.
-   */
-  public getSiteCode(): string {
-    return this.siteCode;
+ * Fetches questions from the Navu API.
+ * @param details - The details for fetching questions
+ * @returns The response containing questions data
+ */
+  public async postFetchQuestions(details: FetchQuestionDetails): Promise<FetchQuestionResponse> {
+    return this.makeRequest('fetch-questions', details);
   }
 
   /**
-   * Gets the base URL for API requests.
+   * Fetches visitors from the Navu API.
+   * @param details - The details for fetching visitors
+   * @returns The response containing visitors data
    */
-  public getBaseUrl(): string {
-    return this.baseUrl;
+  public async postFetchVisitors(details: FetchVisitorDetails): Promise<FetchVisitorResponse> {
+    return this.makeRequest('fetch-visitors', details);
+  }
+
+  /**
+   * Fetches messages from the Navu API.
+   * @param details - The details for fetching messages
+   * @returns The response containing messages data
+   */
+  public async postFetchMessages(details: FetchMessageDetails): Promise<FetchMessageResponse> {
+    return this.makeRequest('fetch-messages', details);
+  }
+
+  /**
+   * Fetches pageviews from the Navu API.
+   * @param details - The details for fetching pageviews
+   * @returns The response containing pageviews data
+   */
+  public async postFetchPageviews(details: FetchPageviewDetails): Promise<FetchPageviewResponse> {
+    return this.makeRequest('fetch-pageviews', details);
   }
 
   /**
@@ -49,10 +76,10 @@ export class NavuApi {
   /**
    * Makes a POST request to the Navu API with retry logic for rate limiting.
    * @param endpoint - The API endpoint to call
-   * @param body - The request body to send
+   * @param details - The request body to send
    * @returns The response data
    */
-  private async makeRequest<T>(endpoint: string, body: unknown): Promise<T> {
+  private async makeRequest<D, R>(endpoint: string, details: D): Promise<R> {
     const url = this.buildUrl(endpoint);
     let delay = 1000; // Start with 1 second delay
     const maxRetries = 10;
@@ -65,7 +92,7 @@ export class NavuApi {
           'Content-Type': 'application/json',
           Authorization: this.getAuthHeader(),
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify(details),
       });
 
       if (response.status === 429) {
@@ -86,45 +113,9 @@ export class NavuApi {
         );
       }
 
-      return (await response.json()) as T;
+      return (await response.json()) as R;
     }
 
     throw new Error('Maximum retry attempts exceeded');
-  }
-
-  /**
-   * Fetches questions from the Navu API.
-   * @param details - The details for fetching questions
-   * @returns The response containing questions data
-   */
-  public async postFetchQuestions(details: unknown): Promise<unknown> {
-    return this.makeRequest('fetch-questions', details);
-  }
-
-  /**
-   * Fetches visitors from the Navu API.
-   * @param details - The details for fetching visitors
-   * @returns The response containing visitors data
-   */
-  public async postFetchVisitors(details: unknown): Promise<unknown> {
-    return this.makeRequest('fetch-visitors', details);
-  }
-
-  /**
-   * Fetches messages from the Navu API.
-   * @param details - The details for fetching messages
-   * @returns The response containing messages data
-   */
-  public async postFetchMessages(details: unknown): Promise<unknown> {
-    return this.makeRequest('fetch-messages', details);
-  }
-
-  /**
-   * Fetches pageviews from the Navu API.
-   * @param details - The details for fetching pageviews
-   * @returns The response containing pageviews data
-   */
-  public async postFetchPageviews(details: unknown): Promise<unknown> {
-    return this.makeRequest('fetch-pageviews', details);
   }
 }

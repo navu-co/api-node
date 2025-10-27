@@ -6,4 +6,8 @@
  */
 
 export { NavuApi } from './navu-api';
-export * from './types';
+export * from './common.js';
+export * from './questions.js';
+export * from './visitors.js';
+export * from './messages.js';
+export * from './pageviews.js';
