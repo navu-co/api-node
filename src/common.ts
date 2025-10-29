@@ -85,9 +85,11 @@ export type PageviewFlag =
 export type QuestionFlag =
   | 'bot'
   | 'custom-skill'
+  | 'tool'
   | 'note'
   | 'out-of-scope'
   | 'thumbs-up'
   | 'thumbs-down'
   | 'unanswered'
+  | 'assisted-entry'
   | 'preview';
