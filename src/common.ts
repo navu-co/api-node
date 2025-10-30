@@ -30,7 +30,6 @@ export interface DurationDescriptor {
 export type VisitorFlag =
   | 'ad-click'
   | 'affiliate'
-  | 'bot'
   | 'contact-extra-click'
   | 'contact-message'
   | 'crm-account'
@@ -54,8 +53,7 @@ export type VisitorFlag =
   | 'navu-user'
   | 'navu-viewer'
   | 'qualified'
-  | 'site-search'
-  | PageviewFlag;
+  | 'site-search';
 
 export type PageviewFlag =
   | 'ad-click'
@@ -83,7 +81,6 @@ export type PageviewFlag =
   | 'site-search';
 
 export type QuestionFlag =
-  | 'bot'
   | 'custom-skill'
   | 'tool'
   | 'note'
