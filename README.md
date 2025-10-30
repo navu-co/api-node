@@ -130,7 +130,7 @@ for fetchVisitors:
 - **site-search**:  The visitor used the site's built-in site search (non-Navu) capability
 - **sql**: The visitor has converted and engaged sufficiently to warrant further attention
 
-## Messages
+## Messages (coming soon)
 To fetch the messages exchanged with a specific visitor, use `fetchMessages`.  Messages can be part of
 conversations between the visitor and the AI assistant, messages left by the visitor via the Navu sidebar's Contact
 page, or part of conversations between the visitor and a live agent (via Slack or Microsoft Teams).
@@ -165,7 +165,7 @@ Messages can come from different types of conversations with a web visitor:
 - **live-chat**: Messages within a conversation between the visitor and a live agent on Slack or Microsoft Teams via Navu
 - **contact-message**: Message left by the visitor using the Navu Contact form
 
-## Pageviews
+## Pageviews (coming soon)
 To fetch the pageviews recorded for a specific visitor, use `fetchPageviews`.
 
 The details you provide determines which pageviews will be returned.  You must provide a visitor ID, which is 
