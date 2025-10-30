@@ -36,7 +36,7 @@ export type PrivacyConsentState = 'granted-implicit' | 'granted-explicit' | 'dis
 
 export type BotDetectionType = 'normal' | 'bot' | 'data-center' | 'user-agent';
 
-export type AcquisitionCampaignType = 'advertising' | 'home-direct' | 'direct' | 'referral' | 'organic-search' | 'organic-social' | 'email' | 'home-search' | 'home-social' | 'other' | 'navu-preview' | 'none';
+export type AcquisitionChannel = 'advertising' | 'home-direct' | 'direct' | 'referral' | 'organic-search' | 'organic-social' | 'email' | 'home-search' | 'home-social' | 'other' | 'navu-preview' | 'none';
 
 export type VisitorIdentityType = 'form-submission' | 'google-analytics' | 'hubspot' | 'hubspot-domain' | 'marketo' | 'marketo-domain' | 'navu-panel' | 'salesforce' | 'salesforce-domain' | 'ip-address' | 'chatbot' | 'navu-contact-form' | 'navu-assistant';
 
@@ -57,8 +57,8 @@ export interface VisitorIdentityDescriptor {
 
 export interface VisitorMetadata {
   deviceType: DeviceType;
-  timezoneOffsetMinutes: number;
-  display: Dimensions;
+  timezoneOffsetMinutes?: number;
+  display?: Dimensions;
   browserLanguage?: string; // as reported by navigator.language
   contentLanguage?: string; // from lang attribute in html tag
   doNotTrack?: string; // as reported by navigator.doNotTrack
@@ -86,7 +86,7 @@ export interface Visitor {
   flags: VisitorFlag[];
   metadata: VisitorMetadata;
   crm?: VisitorCrmInfo;
-  channels: AcquisitionCampaignType[];
+  channels: AcquisitionChannel[];
   identities: VisitorIdentityDescriptor[];
   convertedAt?: number;
   profile?: string;

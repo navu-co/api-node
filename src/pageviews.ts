@@ -1,5 +1,5 @@
 import { PageviewFlag } from "./common.js";
-import { AcquisitionCampaignType } from "./visitors.js";
+import { AcquisitionChannel } from "./visitors.js";
 
 export interface FetchPageviewFilter {
   after?: number;
@@ -66,7 +66,7 @@ export interface Pageview {
   activity: number;
   maxScrollDepth: number;
   isLanding: boolean;
-  channel?: AcquisitionCampaignType;
+  channel?: AcquisitionChannel;
   flags: PageviewFlag[];
   linkClicks?: PageviewLinkClickDescriptor[];
   formSubmissions?: PageviewFormSubmissionDescriptor[];

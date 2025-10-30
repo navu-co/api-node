@@ -1,6 +1,6 @@
 {
   "name": "@navu-co/api-node",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Node.js library for accessing the Navu API to programmatically access data about your website.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
