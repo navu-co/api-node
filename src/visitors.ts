@@ -41,7 +41,7 @@ export type AcquisitionChannel = 'advertising' | 'home-direct' | 'direct' | 'ref
 export type VisitorIdentityType = 'form-submission' | 'google-analytics' | 'hubspot' | 'hubspot-domain' | 'marketo' | 'marketo-domain' | 'navu-panel' | 'salesforce' | 'salesforce-domain' | 'ip-address' | 'chatbot' | 'navu-contact-form' | 'navu-assistant';
 
 
-export interface VisitorIdentityDescriptor {
+export interface VisitorIdentityDetails {
   type: VisitorIdentityType;
   masked?: boolean;
   email?: string;
@@ -87,7 +87,7 @@ export interface Visitor {
   metadata: VisitorMetadata;
   crm?: VisitorCrmInfo;
   channels: AcquisitionChannel[];
-  identities: VisitorIdentityDescriptor[];
+  identities: VisitorIdentityDetails[];
   convertedAt?: number;
   profile?: string;
 }
