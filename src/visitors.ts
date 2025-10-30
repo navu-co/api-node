@@ -49,7 +49,7 @@ export interface VisitorIdentityDetails {
   domain?: string;
   companyName?: string;
   hubspotVid?: number;
-  hubspotCompanyId?: string;
+  hubspotCompanyId?: number;
   salesforceContactId?: string;
   salesforceLeadId?: string;
   salesforceAccountId?: string;
