@@ -31,6 +31,124 @@ try {
 }
 ```
 
+## Via curl
+To access the REST API directly via HTTPS, following are examples of `curl` commands.  See **src/questions.ts** and **src/visitors.ts** for type 
+definitions that describe the request and response JSON structures.
+
+```bash
+$ curl -X POST  https://api.navu.co/S00A000/v1/fetch-questions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ak_00000000000000000000000000000000000 \
+  -d '{
+    "after": 1761855932000,
+    "limit": 1
+  }'
+```
+```json
+{
+  "questions": [
+    {
+      "id": "6902a392d07c4f86f7f78768",
+      "at": 1761780627003,
+      "visitor": {
+        "id": "69027485d07c4f86f7f78667",
+        "emailAddresses": [],
+        "geolocation": {}
+      },
+      "prompt": "What is flexigrid?",
+      "response": {
+        "type": "guide-response",
+        "response": "Flexigrid is a lightweight ...",
+        "citations": [
+          {
+            "url": "https://www.flexpro.com/stormwater-management/detention-and-infiltration/flexigrid-srpe-detention/",
+            "imageUrl": "https://www.flexpro.com/media/254fmvun/flexigrid-stormwater-dentention-system.jpg",
+            "section": "Stormwater Management",
+            "title": "flexigrid SRPE Detention: Steel Reinforced Polyethylene",
+            "description": "flexigrid Pipe Solutions - Utilize flexigrid, the steel reinforced polyethylene pipe, for superior detention and infiltration capabilities.",
+            "published": 1752875763421,
+            "lastModified": 1756132959000,
+            "language": "en"
+          }
+        ]
+      },
+      "flags": [
+        "preview"
+      ],
+      "skill": {
+        "id": "answer-question",
+        "name": "Answer a question"
+      },
+      "topic": "Pipe solutions",
+      "source": "text-entry",
+      "duration": {
+        "timeToStart": 9538,
+        "totalTimeToComplete": 13966
+      }
+    }
+  ],
+  "nextPage": "1761780666602"
+}
+```
+
+```bash
+$ curl -X POST  https://api.navu.co/S00A000/v1/fetch-visitors \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ak_00000000000000000000000000000000000 \
+  -d '{
+    "after": 1761855932000,
+    "limit": 1
+  }'
+```
+```json
+{
+  "visitors": [
+    {
+      "id": "69027485d07c4f86f7f78667",
+      "geolocation": {
+        "countryCode": "US",
+        "region": "CA",
+        "city": "Palo Alto"
+      },
+      "timestamps": {
+        "firstSeen": 1761768581721,
+        "lastContact": 1761850301554
+      },
+      "engagement": {
+        "pageviews": 3,
+        "uniquePageCount": 1,
+        "activity": 0,
+        "visitDays": 2,
+        "guideQuestions": 56
+      },
+      "flags": [
+        "guide-entry",
+        "guide-question",
+        "navu-preview",
+        "navu-user",
+        "navu-viewer"
+      ],
+      "metadata": {
+        "deviceType": "desktop",
+        "timezoneOffsetMinutes": 420,
+        "display": {
+          "width": 1689,
+          "height": 975
+        },
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+        "adBlockerDetected": false,
+        "botDetection": "normal"
+      },
+      "channels": [
+        "direct"
+      ],
+      "identities": [],
+      "profile": "Owns 18‑acre lake property with four creeks; seeking two ~20 ft bridges for ATV/pedestrian; interested specifically in pedestrian truss options, finishes and decking; preliminary design stage; requesting local technical expertise connection (English)."
+    }
+  ]
+}
+```
+
 ## Authentication
 To authenticate your requests, you will need an API Key.  In your Navu portal, under "More" click on "API Keys".
 Create a key and save it in a secure place.  After creating it you will not be able to get it again.  If you lose
@@ -63,13 +181,15 @@ const questionCursor = await navuApi.fetchQuestions(details);
 ### Question Flags
 Following are the flags that may be associated with a question and can be used to include or exclude questions
 in the filter for fetchQuestions:
-- **bot**: This question was asked by a visitor who appeared to be a bot
 - **custom-skill**:  This question was answered using a custom skill
+- **tool**: A tool was used (other than file-search) to answer this question
 - **note**:  This question has a note associated with it
 - **out-of-scope**:  It appears that this question was "out of scope" meaning that it did not appear to be relevant to the company or website
 - **thumbs-up**:  This question was marked with a "thumbs up", suggesting that the answer was particularly good
 - **thumbs-down**:  This question was marked with a "thumbs down", suggesting that the answer was disappointing
 - **unanswered**:  It appears that the AI was unable to answer this question
+- **assisted-entry**: This question was asked using some mechanism other than the user directly entering text.  For example, they may have used a prompt or suggested question.
+- **preview**: This question was asked by someone who was using Navu's preview capability, therefore typically by an employee or affiliate
 
 ## Visitors
 To fetch the web visitors that have been tracked by Navu, use `fetchVisitors`.
@@ -103,14 +223,12 @@ Following are the flags associated with a web visitor and can be used to include
 for fetchVisitors:
 - **ad-click**: The visitor arrived on the website at least once by clicking on an advertisement
 - **affiliate**: It appears that the visitor is an employee or affiliate of the company
-- **bot**: It appears that the visitor is a bot
 - **contact-extra-click**: The visitor has clicked on one of the extra buttons on the Navu Contact form
 - **contact-message**:  The visitor used the Navu Contact page to leave a message
 - **crm-account**: The visitor is associated with a company/account in the CRM
 - **crm-identity**: The visitor is associated with a contact in the CRM
 - **domain**: The visitor has been associated with a website domain in some way (reverse IP, email address, CRM, etc.)
 - **email-click**: The visitor arrived on the website at least once by clicking on a link in an email
-- **follower**:  The visitor has visited many times over an extended time period without ever converting
 - **form-submit**:  The visitor submitted a form (other than Navu)
 - **guide-entry**:  The visitor asked a question to the AI assistant by manually entering it as text
 - **guide-question**:  The visitor asked a question to the AI assistant in some way (entering text manually, or otherwise)
@@ -128,7 +246,6 @@ for fetchVisitors:
 - **navu-viewer**:  The visitor has seen an open Navu sidebar at some point during their journey
 - **qualified**: The visitor has engaged at least minimally on the website
 - **site-search**:  The visitor used the site's built-in site search (non-Navu) capability
-- **sql**: The visitor has converted and engaged sufficiently to warrant further attention
 
 ## Messages (coming soon)
 To fetch the messages exchanged with a specific visitor, use `fetchMessages`.  Messages can be part of

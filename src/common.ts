@@ -57,7 +57,7 @@ export type VisitorFlag =
 
 export type PageviewFlag =
   | 'ad-click'
-  | 'client-side-navigation'
+  | 'affiliate'
   | 'contact-extra-click'
   | 'contact-message'
   | 'crm-account'
@@ -67,10 +67,12 @@ export type PageviewFlag =
   | 'form-submit'
   | 'guide-entry'
   | 'guide-question'
+  | 'high-value'
   | 'identity'
   | 'link-click'
   | 'live-chat-requested'
   | 'mql'
+  | 'multi-day'
   | 'navu-click'
   | 'navu-close'
   | 'navu-open'
