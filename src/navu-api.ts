@@ -11,16 +11,19 @@ import { Cursor } from "./cursor.js";
 export class NavuApi {
   private readonly siteCode: string;
   private readonly apiKey: string;
-  private readonly baseUrl: string = 'https://api.navu.co';
+  private baseUrl: string = 'https://api.navu.co';
 
   /**
    * Creates a new NavuApi instance.
    * @param siteCode - Your Navu site code
    * @param apiKey - Your Navu API key (starts with 'ak_')
    */
-  constructor(siteCode: string, apiKey: string) {
+  constructor(siteCode: string, apiKey: string, customBaseUrl?: string) {
     this.siteCode = siteCode;
     this.apiKey = apiKey;
+    if (customBaseUrl) {
+      this.baseUrl = customBaseUrl;
+    }
   }
 
   /**
