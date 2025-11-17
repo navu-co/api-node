@@ -247,16 +247,14 @@ for fetchVisitors:
 - **qualified**: The visitor has engaged at least minimally on the website
 - **site-search**:  The visitor used the site's built-in site search (non-Navu) capability
 
-## Messages (coming soon)
+## Messages
 To fetch the messages exchanged with a specific visitor, use `fetchMessages`.  Messages can be part of
 conversations between the visitor and the AI assistant, messages left by the visitor via the Navu sidebar's Contact
 page, or part of conversations between the visitor and a live agent (via Slack or Microsoft Teams).
 
 The details you provide determines which messages will be returned.  You must provide a visitor ID, which is 
-returned as part of each visitor record via fetchVisitors.  By default, all messages exchanged with that visitor 
-will be returned in forward chronological order.  You can specify a filter to limit the messages that are returned.  
-For example, you can specify that you only want messages that are part of the "guide" conversation -- meaning messages 
-exchanged between the web visitor and the AI assistant.
+returned as part of each visitor record via fetchVisitors.  You must specify which conversations you want --
+either those between the user and the AI assistant ("guide") or those that are part of a live chat ("live-chat").
 
 You will get back a cursor that you can use to walk all of the message.  The cursor methods will handle paging and 
 throttling.
@@ -280,9 +278,8 @@ const messageCursor = await navuApi.fetchMessages(details);
 Messages can come from different types of conversations with a web visitor:
 - **guide**: Messages within a conversation between the visitor and their AI assistant
 - **live-chat**: Messages within a conversation between the visitor and a live agent on Slack or Microsoft Teams via Navu
-- **contact-message**: Message left by the visitor using the Navu Contact form
 
-## Pageviews (coming soon)
+## Pageviews
 To fetch the pageviews recorded for a specific visitor, use `fetchPageviews`.
 
 The details you provide determines which pageviews will be returned.  You must provide a visitor ID, which is 
@@ -291,8 +288,7 @@ will be returned in forward chronological order.  You can specify a filter to li
 For example, if you have previously fetched pageviews for this visitor up to some point in time, you can use the
 timestamp of that last pageview in the **after** field so that you'll only receive pageviews after that point.
 
-You will get back a cursor that you can use to walk all of the pageviews.  The cursor methods will handle paging and 
-throttling.
+You will get back a cursor that you can use to walk all of the pageviews.  The cursor methods will handle paging and throttling.
 
 ```typescript
 const details: FetchPageviewDetails = {

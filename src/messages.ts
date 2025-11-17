@@ -2,11 +2,11 @@ import { ConversationType, DurationDescriptor, ResourceDescriptor } from "./comm
 
 export interface FetchMessageFilter {
   after?: number;
-  conversationTypes?: ConversationType[];
 }
 
 export interface FetchMessageDetails {
   visitorId: string;
+  conversationType: ConversationType;
   filter?: FetchMessageFilter;
   limit?: number;
   nextPage?: string;
