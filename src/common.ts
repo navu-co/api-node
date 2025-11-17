@@ -1,4 +1,4 @@
-export type ConversationType = 'guide' | 'live-chat' | 'contact-message';
+export type ConversationType = 'guide' | 'live-chat';
 
 
 export interface GeoLocationDescriptor {
@@ -12,11 +12,8 @@ export interface ResourceDescriptor {
   imageUrl?: string;
   section?: string;
   title?: string;
-  titleHtml?: string;
   description?: string;
-  descriptionHtml?: string;
   author?: string;
-  authorHtml?: string;
   published?: number;
   lastModified?: number;
   language?: string;
