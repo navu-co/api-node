@@ -26,6 +26,7 @@ export interface DurationDescriptor {
 
 export type VisitorFlag =
   | 'ad-click'
+  | 'llm-click'
   | 'affiliate'
   | 'contact-extra-click'
   | 'contact-message'
@@ -53,6 +54,7 @@ export type VisitorFlag =
 
 export type PageviewFlag =
   | 'ad-click'
+  | 'llm-click'
   | 'client-side-navigation'
   | 'contact-extra-click'
   | 'contact-message'
