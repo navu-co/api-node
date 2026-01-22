@@ -149,11 +149,69 @@ $ curl -X POST  https://api.navu.co/S00A000/v1/fetch-visitors \
 }
 ```
 
+```bash
+$ curl "https://api.navu.co/S00A000/v1/conversation-metrics?apiKey=ak_00000000000000000000000000000000000&start_date=2026-01-19&end_date=2026-01-22"
+```
+```json
+{
+  "schema": [
+    {
+      "name": "date",
+      "type": "DATE",
+      "description": "The date for which the metrics are being reported.  Daily metrics start at midnight Pacific time."
+    },
+    {
+      "name": "questions",
+      "type": "NUMBER",
+      "description": "The number of questions asked to the AI on that date"
+    },
+    {
+      "name": "visitorsWithQuestions",
+      "type": "NUMBER",
+      "description": "The number of unique visitors who asked questions to the AI on that date"
+    },
+    {
+      "name": "messagesLeft",
+      "type": "NUMBER",
+      "description": "The number of messages that were left on that date using the Contact sidebar tab."
+    }
+  ],
+  "rows": [
+    {
+      "date": "2026-01-19",
+      "questions": 125,
+      "visitorsWithQuestions": 82,
+      "messagesLeft": 6
+    },
+    {
+      "date": "2026-01-20",
+      "questions": 180,
+      "visitorsWithQuestions": 98,
+      "messagesLeft": 9
+    },
+    {
+      "date": "2026-01-21",
+      "questions": 211,
+      "visitorsWithQuestions": 99,
+      "messagesLeft": 8
+    },
+    {
+      "date": "2026-01-22",
+      "questions": 190,
+      "visitorsWithQuestions": 84,
+      "messagesLeft": 12
+    }
+  ]
+}
+```
+
 ## Authentication
 To authenticate your requests, you will need an API Key.  In your Navu portal, under "More" click on "API Keys".
 Create a key and save it in a secure place.  After creating it you will not be able to get it again.  If you lose
 your key, you will need to create a new one.  Your API Key is a string that starts with `ak_` followed by a long
 string of alphanumeric characters.
+
+You can either include the API KEY in a URL parameter, `apiKey`, or in an Authorization header (after "Bearer").
 
 ## Questions
 To fetch the questions that have been asked by web visitors to their Navu AI assistants, use `fetchQuestions`.
@@ -302,8 +360,14 @@ const pageviewCursor = await navuApi.fetchPageviews(details);
 ...
 ```
 
+## Conversation Metrics
+If you're looking for a simple set of daily metrics that show the overall operation of the conversations on your site,
+use the conversationMetrics API.  This is specifically designed to integration nicely with dashboard products and includes
+a schema and a very simple table of metrics.  By default, it will return metrics for the past 30 days.  You can choose
+other start and end dates if preferred.  There is no paging.
+
 ## Timestamps
-All timestamps used in details and responses are numbers that correspond to standard Unix-style timestamps -- i.e.,
+Timestamps used in details and responses are numbers that correspond to standard Unix-style timestamps -- i.e.,
 milliseconds since January 1, 1970 GMT.
 
 ## Cursors, Paging and Throttling
@@ -331,6 +395,9 @@ There is a separate URL for each method:
 - **postFetchVisitors**: https://api.navu.co/SITECODE/v1/fetch-visitors
 - **postFetchMessages**: https://api.navu.co/SITECODE/v1/fetch-messages
 - **postFetchPageviews**: https://api.navu.co/SITECODE/v1/fetch-pageviews
+- **conversationMetrics**: https://api.navu.co/SITECODE/v1/conversation-metrics
+
+Note that some APIs use POST while others use GET.
 
 If you choose to use the REST APIs directly, you must handle paging and throttling.  If a response contains a **nextPage**
 field, to get the next page, include that value in a **nextPage** field along with otherwise identical details.

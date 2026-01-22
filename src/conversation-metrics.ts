@@ -5,7 +5,7 @@ export interface FetchConversationMetricsResponse {
 }
 
 export interface ConversationMetricsItem {
-  date: string; /** ISODate */
+  date: string; /** YYYY-MM-DD */
   questions: number;
   visitorsWithQuestions: number;
   messagesLeft: number;
