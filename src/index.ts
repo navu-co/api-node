@@ -14,3 +14,5 @@ export * from './visitors.js';
 export * from './messages.js';
 export * from './pageviews.js';
 export * from './cursor.js';
+export * from './conversation-metrics.js';
+
