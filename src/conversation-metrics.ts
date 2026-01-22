@@ -1,6 +1,6 @@
 
 export interface FetchConversationMetricsResponse {
-  schema: MetricsSchemaItem;
+  schema: MetricsSchemaItem[];
   rows: ConversationMetricsItem[];
 }
 
