@@ -7,6 +7,7 @@ export interface FetchVisitorFilter {
 }
 
 export interface FetchVisitorDetails {
+  visitorId?: string;
   filter?: FetchVisitorFilter;
   limit?: number;
   nextPage?: string;

@@ -220,6 +220,9 @@ The details you provide determines which questions will be returned.  By default
 in the past will be returned in forward chronological order.  Each question has associated flags.  You can specify
 which flags the questions must have and/or must not have in order to be included in the results.
 
+Alternatively, you can provide a **questionId** to fetch a single question by ID (the same ID returned in each
+question record).  When **questionId** is provided, **filter**, **limit**, and **nextPage** are ignored.
+
 You will get back a cursor that you can use to walk all of the questions.  The cursor methods will handle paging and 
 throttling.
 
@@ -255,7 +258,10 @@ To fetch the web visitors that have been tracked by Navu, use `fetchVisitors`.
 The details you provide determines which visitors will be returned.  By default, all visitors starting 24 hours
 in the past will be returned in forward chronological order based on the time of last contact from that visitor.  
 Each visitor has associated flags.  You can specify which flags the questions must have and/or must not have in 
-order to be included in the results.  
+order to be included in the results.
+
+Alternatively, you can provide a **visitorId** to fetch a single visitor by ID.  When **visitorId** is provided,
+**filter**, **limit**, and **nextPage** are ignored.  
 
 You will get back a cursor that you can use to walk all of the visitors.  The cursor methods will handle paging and 
 throttling.
@@ -345,6 +351,9 @@ returned as part of each visitor record via fetchVisitors.  By default, all page
 will be returned in forward chronological order.  You can specify a filter to limit the pageviews that are returned.  
 For example, if you have previously fetched pageviews for this visitor up to some point in time, you can use the
 timestamp of that last pageview in the **after** field so that you'll only receive pageviews after that point.
+
+Alternatively, you can provide a **pageviewId** to fetch a single pageview by ID (the same ID returned in each
+pageview record).  When **pageviewId** is provided, **filter**, **limit**, and **nextPage** are ignored.
 
 You will get back a cursor that you can use to walk all of the pageviews.  The cursor methods will handle paging and throttling.
 

@@ -7,6 +7,7 @@ export interface FetchQuestionFilter {
 }
 
 export interface FetchQuestionDetails {
+  questionId?: string;
   filter?: FetchQuestionFilter;
   limit?: number;
   nextPage?: string;
