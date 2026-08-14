@@ -83,6 +83,11 @@ export type PageviewFlag =
 export type QuestionFlag =
   | 'custom-skill'
   | 'tool'
+  | 'catalog'
+  | 'navigation'
+  | 'identification'
+  | 'email'
+  | 'notification'
   | 'note'
   | 'out-of-scope'
   | 'thumbs-up'
