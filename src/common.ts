@@ -94,4 +94,5 @@ export type QuestionFlag =
   | 'thumbs-down'
   | 'unanswered'
   | 'assisted-entry'
-  | 'preview';
+  | 'preview'
+  | 'malicious';
