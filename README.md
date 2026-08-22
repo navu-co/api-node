@@ -150,7 +150,8 @@ $ curl -X POST  https://api.navu.co/S00A000/v1/fetch-visitors \
 ```
 
 ```bash
-$ curl "https://api.navu.co/S00A000/v1/conversation-metrics?apiKey=ak_00000000000000000000000000000000000&start_date=2026-01-19&end_date=2026-01-22"
+$ curl "https://api.navu.co/S00A000/v1/conversation-metrics?start_date=2026-01-19&end_date=2026-01-22" \
+  -H "Authorization: Bearer ak_00000000000000000000000000000000000"
 ```
 ```json
 {
@@ -211,7 +212,7 @@ Create a key and save it in a secure place.  After creating it you will not be a
 your key, you will need to create a new one.  Your API Key is a string that starts with `ak_` followed by a long
 string of alphanumeric characters.
 
-You can either include the API KEY in a URL parameter, `apiKey`, or in an Authorization header (after "Bearer").
+Include the API key in an Authorization header after "Bearer". Query-string `apiKey` is not supported.
 
 ## Questions
 To fetch the questions that have been asked by web visitors to their Navu AI assistants, use `fetchQuestions`.
