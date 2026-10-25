@@ -49,7 +49,7 @@ export interface QuestionSearchResponseDescriptor extends QuestionResponseDescri
   searchResults?: ResourceDescriptor[];
 }
 
-export type QuestionSource = 'suggested' | 'linked' | 'text-entry' | 'introduction' | 'bubble-suggestion' | 'bubble-prompt';
+export type QuestionSource = 'suggested' | 'linked' | 'text-entry' | 'introduction' | 'bubble-suggestion' | 'bubble-prompt' | 'a2a' | 'mcp';
 export type QuestionReaction = 'thumbs-up' | 'thumbs-down';
 
 export interface Question {
