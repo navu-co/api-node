@@ -51,7 +51,9 @@ export type VisitorFlag =
   | 'navu-user'
   | 'navu-viewer'
   | 'qualified'
-  | 'site-search';
+  | 'site-search'
+  | 'a2a'
+  | 'mcp';
 
 export type PageviewFlag =
   | 'ad-click'
@@ -78,7 +80,9 @@ export type PageviewFlag =
   | 'navu-user'
   | 'navu-viewer'
   | 'qualified'
-  | 'site-search';
+  | 'site-search'
+  | 'a2a'
+  | 'mcp';
 
 export type QuestionFlag =
   | 'custom-skill'
@@ -95,4 +99,6 @@ export type QuestionFlag =
   | 'unanswered'
   | 'assisted-entry'
   | 'preview'
-  | 'malicious';
+  | 'malicious'
+  | 'a2a'
+  | 'mcp';
