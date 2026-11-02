@@ -35,7 +35,7 @@ export interface Dimensions {
 
 export type PrivacyConsentState = 'granted-implicit' | 'granted-explicit' | 'disallowed-implicit' | 'disallowed-explicit';
 
-export type BotDetectionType = 'normal' | 'bot' | 'data-center' | 'user-agent';
+export type BotDetectionType = 'normal' | 'bot' | 'data-center' | 'user-agent' | 'headless-crawler';
 
 export type AcquisitionChannel = 'advertising' | 'llm' | 'home-direct' | 'direct' | 'referral' | 'organic-search' | 'organic-social' | 'email' | 'home-search' | 'home-social' | 'other' | 'navu-preview' | 'none';
 
