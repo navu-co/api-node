@@ -13,7 +13,7 @@ export interface FetchMessageDetails {
 }
 
 export type MessageSourceRole = 'visitor' | 'guide' | 'agent' | 'system';
-export type MessagePresentation = 'chat-message' | 'site-search-request' | 'welcome' | 'page-summary' | 'guide-content-card' | 'guide-search-suggestion' | 'system-message' | 'chat-request' | 'deferred-chat-message' | 'guide-search-results' | 'guide-initiation' | 'prompt-card';
+export type MessagePresentation = 'chat-message' | 'site-search-request' | 'welcome' | 'page-summary' | 'guide-content-card' | 'guide-search-suggestion' | 'system-message' | 'chat-request' | 'deferred-chat-message' | 'guide-search-results' | 'guide-initiation' | 'prompt-card' | 'silent-response';
 
 
 export interface Message {
