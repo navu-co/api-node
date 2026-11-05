@@ -39,7 +39,7 @@ export type BotDetectionType = 'normal' | 'bot' | 'data-center' | 'user-agent' |
 
 export type AcquisitionChannel = 'advertising' | 'llm' | 'home-direct' | 'direct' | 'referral' | 'organic-search' | 'organic-social' | 'email' | 'home-search' | 'home-social' | 'other' | 'navu-preview' | 'none';
 
-export type VisitorIdentityType = 'form-submission' | 'google-analytics' | 'hubspot' | 'hubspot-domain' | 'marketo' | 'marketo-domain' | 'navu-panel' | 'salesforce' | 'salesforce-domain' | 'ip-address' | 'chatbot' | 'navu-contact-form' | 'navu-assistant';
+export type VisitorIdentityType = 'form-submission' | 'google-analytics' | 'hubspot' | 'hubspot-domain' | 'marketo' | 'marketo-domain' | 'navu-panel' | 'salesforce' | 'salesforce-domain' | 'ip-address' | 'chatbot' | 'navu-contact-form' | 'navu-assistant' | 'frontdesk-signin';
 
 
 export interface VisitorIdentityDetails {
